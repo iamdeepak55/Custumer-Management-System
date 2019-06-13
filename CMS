@@ -1,0 +1,97 @@
+import sys
+#<-----------------------------------------------BUSINESS LOGIC LAYER------------------------------------------------->#
+list_id = []
+list_name = []
+list_address = []
+list_mob = []
+def addCustomer(id, name, address, mob):
+    list_id.append(id)
+    list_name.append(name)
+    list_address.append(address)
+    list_mob.append(mob)
+
+def searchCustomer(id):
+    if (list_id.__contains__(id)):
+        ind = list_id.index(id)
+        print('customer_id: ', list_id[ind])
+        print('customer_name: ', list_name[ind])
+        print('customer_address: ', list_address[ind])
+        print('customer_mobile: ', list_mob[ind])
+    else:
+        print('Sorry, Customer not found! ')
+
+def deleteCustomer(id):
+    if (list_id.__contains__(id)):
+        ind = list_id.index(id)
+        list_id.pop(ind)
+        list_name.pop(ind)
+        list_address.pop(ind)
+        list_mob.pop(ind)
+    else:
+        print('Sorry Customer not found! ')
+
+def modifyCustomer(id):
+    if (list_id.__contains__(id)):
+        i= list_id.index(id)
+        name = input("Enter Customer's new Name: ")
+        address = input("Enter Customer's new Address: ")
+        mob = input("Enter Customer's new Mobile Number: ")
+        list_name.insert(i, name)
+        list_address.insert(i, address)
+        list_mob.insert(i, mob)
+    else:
+        print('Sorry, Customer not found! ')
+
+def showAllCustomer():
+    for i in range(len(list_id)):
+        print('---------Customer No: ',i+1, '---------')
+        print('Customer ID: ', list_id[i])
+        print('Customer Name: ', list_name[i])
+        print('Customer Address: ', list_address[i])
+        print('Customer Mobile Number: ', list_mob[i])
+
+
+ # <--------------------------------------------- PRESENTATION LAYER--------------------------------------------->#
+
+while True:
+    print('-------Welcome to Customer Management System-------')
+    print("1. Add Customer \n2. Search Customer \n3. Delete Customer \n4. Modify Customer \n5. Show All Customers \n6. Exit")
+    choice = input('Enter Your Choice: ')
+    if(choice == '1'):
+        id = int(input('Enter Customer ID: '))
+        name = input('Enter Customer Name: ')
+        address = input('Enter Customer Address: ')
+        mob = input('Enter Customer Mobile Number: ')
+        addCustomer(id, name, address, mob)
+        print('Customer added successfully!')
+
+    elif(choice=='2'):
+        id = int(input('Enter Customer ID For Search: '))
+        searchCustomer(id)
+
+    elif(choice == '3'):
+        id = int(input('Enter Customer ID For Deletion: '))
+        deleteCustomer(id)
+        print('Customer deleted succesfully!')
+
+    elif(choice == '4'):
+        id = int(input('Enter Customer id: '))
+        modifyCustomer(id)
+        print('Customer modified successfully')
+
+    elif(choice == '5'):
+        showAllCustomer()
+
+    elif(choice =='6'):
+        print('Thank you so much  for using this  system ! ')
+        sys.exit()
+
+    else:
+        print('WRONG CHOICE')
+
+
+
+
+
+
+

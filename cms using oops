@@ -1,0 +1,108 @@
+# ------------------------------------------------------Business Logic Layer---------------#
+
+class Customer:
+    list_cus = []
+
+    def __init__(self):
+        self.id = 0
+        self.name = None
+        self.address = None
+        self.mobile = None
+
+    def add_customer(self):
+        Customer.list_cus.append(self)
+
+    def search_customer(self, id):
+        for e in Customer.list_cus:
+            if (e.id == id):
+                self.id = e.id
+                self.name = e.name
+                self.address = e.address
+                self.mobile = e.mobile
+                return
+
+    def modify_customer(self, id):
+        for e in Customer.list_cus:
+            if (e.id == id):
+                e.name = self.name
+                e.address = self.address
+                e.mobile = self.mobile
+
+    def show_all(self,e):
+
+        self.id = e.id
+        self.name = e.name
+        self.address = e.address
+        self.mobile = e.mobile
+
+
+    def del_customer(self, id):
+        for e in Customer.list_cus:
+            if (e.id == id):
+                index = Customer.list_cus.index(e)
+                Customer.list_cus.pop(index)
+
+
+# -----------------------------Presentation Layer----------------------#
+
+while True:
+    print("-------------------------------------------------")
+    print(" 1. ADD CUSTOMER \n 2. SEARCH CUSTOMER  \n 3. MODIFY \n 4. DELETE CUSTOMER \n 5. Show All \n 6. EXIT")
+
+    ch = input("enter your choice")
+    if ch == '1':
+        cus = Customer()
+        cus.id = int(input("Enter your ID"))
+        cus.name = input("Enter your name")
+        cus.address = input("Enter your address")
+        cus.mobile = input("Enter your mobile no")
+        cus.add_customer()
+
+    elif ch == '2':
+        cus = Customer()
+        id = int(input("Enter your ID"))
+        cus.search_customer(id)
+        print("ID:", cus.id)
+        print("Name:", cus.name)
+        print("Address:", cus.address)
+        print("Mobile:", cus.mobile)
+
+    elif ch == '3':
+        cus = Customer()
+        id = int(input("Enter the ID"))
+        cus.name = input("Enter the name")
+        cus.address = input("Enter the address")
+        cus.mobile = input("Enter the mobile no")
+        cus.modify_customer(id)
+
+    elif ch == '4':
+        cus = Customer()
+        id = int(input("Enter the ID"))
+        cus.del_customer(id)
+        print("Customer Deleted Successfully")
+
+    elif ch == '5':
+        cus = Customer()
+        for e in cus.list_cus:
+            cus.show_all(e)
+            print("ID:", cus.id)
+            print("Name:", cus.name)
+            print("Addr:", cus.address)
+            print("Mob:", cus.mobile)
+
+    elif ch == '6':
+        print("Thank You")
+        exit()
+
+    else:
+        print("wrong choice")
+
+
+
+
+
+
+
+
+
+
